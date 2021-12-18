@@ -21,7 +21,7 @@ public class Program {
                         e.printStackTrace();
                     }
                 }
-                UI.printBoard(chessMatch.getPieces());
+                UI.printMatch(chessMatch);
 
                 System.out.print("\nSource: ");
                 ChessPosition source = UI.readChessPosition(sc);
@@ -35,7 +35,6 @@ public class Program {
                     }
                 }
                 UI.printBoard(chessMatch.getPieces(), possibleMoves);
-
                 System.out.print("\nTarget: ");
                 ChessPosition target = UI.readChessPosition(sc);
 
