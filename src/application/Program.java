@@ -16,28 +16,16 @@ public class Program {
         ChessMatch chessMatch = new ChessMatch();
         List<ChessPiece> captured = new ArrayList<>();
 
-        while (true) {
+        while (!chessMatch.isCheckMate()) {
             try {
-                if (System.getProperty("os.name").contains("Windows")) {
-                    try {
-                        new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
+                UI.clearScreen();
                 UI.printMatch(chessMatch, captured);
 
                 System.out.print("\nSource: ");
                 ChessPosition source = UI.readChessPosition(sc);
 
                 boolean[][] possibleMoves = chessMatch.possibleMoves(source);
-                if (System.getProperty("os.name").contains("Windows")) {
-                    try {
-                        new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
+                UI.clearScreen();
                 UI.printBoard(chessMatch.getPieces(), possibleMoves);
                 System.out.print("\nTarget: ");
                 ChessPosition target = UI.readChessPosition(sc);
@@ -53,5 +41,7 @@ public class Program {
                 sc.nextLine();
             }
         }
+        UI.clearScreen();
+        UI.printMatch(chessMatch, captured);
     }
 }
